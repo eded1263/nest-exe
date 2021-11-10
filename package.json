@@ -1,0 +1,44 @@
+{
+  "name": "node-ts-exe",
+  "version": "0.1.0",
+  "description": "Demo to create EXE file with Node and Typescript",
+  "scripts": {
+    "clean": "rm -rf build dist",
+    "lint": "eslint src/*",
+    "test": "jest --coverage",
+    "compile": "tsc",
+    "bundle": "webpack",
+    "minify": "babel build/bundle.js --out-file dist/${npm_package_name}.js",
+    "dev": "yarn test --watch",
+    "start": "yarn compile && node build/src/index.js",
+    "build-all": "yarn clean && yarn lint && yarn test && yarn compile && yarn bundle && yarn minify",
+    "build-exe": "yarn build-all && pkg -t latest-win-x64 --out-path dist/ dist/${npm_package_name}.js"
+  },
+  "author": "Gabriel Possamai",
+  "license": "ISC",
+  "dependencies": {
+    "process": "^0.11.10",
+    "ts-node": "^10.4.0",
+    "typescript": "^4.4.4"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.16.0",
+    "@babel/core": "^7.16.0",
+    "@babel/preset-env": "^7.16.0",
+    "@types/jest": "^27.0.2",
+    "@types/node": "^16.11.7",
+    "babel-jest": "^27.3.1",
+    "babel-preset-minify": "^0.5.1",
+    "debug": "^4.3.2",
+    "eslint": "^8.2.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.25.3",
+    "eslint-plugin-prettier": "^4.0.0",
+    "jest": "^27.3.1",
+    "prettier": "^2.4.1",
+    "regenerator-runtime": "^0.13.9",
+    "typescript-eslint": "^0.0.1-alpha.0",
+    "webpack": "^5.63.0",
+    "webpack-cli": "^4.9.1"
+  }
+}
