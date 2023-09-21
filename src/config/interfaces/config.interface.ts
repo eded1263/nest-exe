@@ -17,7 +17,7 @@ export interface IConfig {
     keepalive: number;
     reconnectPeriod: number;
     protocol: 'mqtts' | 'mqtt';
-    protocolVersion: number;
+    protocolVersion: 3 | 4 | 5;
     rejectUnauthorized: boolean;
   };
 }

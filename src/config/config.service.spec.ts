@@ -1,6 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { ConfigService } from './config.service';
 import config from './files/config.dev';
+import { GuidModule } from './guid/guid.module';
 describe('ConfigService', () => {
   let service: ConfigService;
   const OLD_ENV = process.env;
@@ -9,7 +10,8 @@ describe('ConfigService', () => {
     jest.resetModules();
     process.env = { ...OLD_ENV };
     const module: TestingModule = await Test.createTestingModule({
-      providers: [ConfigService]
+      providers: [ConfigService],
+      imports: [GuidModule]
     }).compile();
 
     service = module.get<ConfigService>(ConfigService);
